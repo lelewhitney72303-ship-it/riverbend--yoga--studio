@@ -1,0 +1,209 @@
+/* RIVERBEND YOGA STUDIO - WEBSITE STYLES */
+
+/* Basic website settings */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f5ef;
+    color: #35443b;
+    line-height: 1.7;
+}
+
+/* Header */
+header {
+    background-color: #dce8dc;
+    color: #35443b;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+}
+
+/* Navigation */
+nav {
+    background-color: #526b59;
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #f0d9b5;
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 25px 18px;
+}
+
+section {
+    background-color: #ffffff;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #526b59;
+    border-bottom: 2px solid #dce8dc;
+    padding-bottom: 8px;
+}
+
+h3 {
+    color: #7b684f;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    margin: 15px auto;
+}
+
+figure {
+    margin: 20px 0;
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+    color: #526b59;
+    padding: 8px;
+}
+
+/* Links */
+a {
+    color: #526b59;
+}
+
+main a:hover,
+main a:focus {
+    color: #7b684f;
+}
+
+/* Audio and video */
+audio,
+video {
+    display: block;
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+/* Forms */
+form {
+    background-color: #f7f5ef;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+fieldset {
+    border: 1px solid #a9b9a8;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+legend {
+    color: #526b59;
+    font-weight: bold;
+    padding: 5px;
+}
+
+label {
+    display: inline-block;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0 12px;
+    border: 1px solid #a9b9a8;
+    border-radius: 5px;
+    font: inherit;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #526b59;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background-color: #35443b;
+}
+
+/* Footer */
+footer {
+    background-color: #526b59;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+/* Larger screens */
+@media (min-width: 768px) {
+
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        gap: 35px;
+    }
+
+    main {
+        padding: 40px 30px;
+    }
+
+    section {
+        padding: 35px;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+}
