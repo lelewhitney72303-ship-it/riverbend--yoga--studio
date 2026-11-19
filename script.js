@@ -84,16 +84,27 @@ function showError(fieldId, errorId, message) {
 }
 
 // Remove a previously displayed error.
+
 function clearError(fieldId, errorId) {
     const field = document.getElementById(fieldId);
     const error = document.getElementById(errorId);
 
     field.removeAttribute("aria-invalid");
     error.textContent = "";
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+}
+
 // Validate the interest request form.
 function validateForm() {
+    let valid = true;
+
+    const name = document.getElementById("visitor-name").value.trim();
+    const email = document.getElementById("visitor-email").value.trim();
+    const selectedWorkshop = formWorkshop.value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    clearError("visitor-name", "name-error");
+    clearError("visitor-email", "email-error");
+    clearError("form-workshop", "workshop-error");
     let valid = true;
 
     const name = document.getElementById("visitor-name").value.trim();
