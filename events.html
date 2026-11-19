@@ -7,12 +7,11 @@
     <title>Workshops and Events | Riverbend Yoga Studio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
     <header>
         <h1>Workshops and Events</h1>
-        <p>Connect, learn, and grow at your own pace.</p>
+        <p>Grow, connect, and discover something new at Riverbend Yoga Studio.</p>
     </header>
 
     <nav aria-label="Main navigation">
@@ -25,269 +24,136 @@
     </nav>
 
     <main>
-
         <section>
-            <h2>Explore Our Monthly Workshops</h2>
+            <h2>Monthly Workshops</h2>
             <p>
-                At Riverbend Yoga Studio, we believe that
-                wellness is a journey best shared with others.
-                Our monthly workshops provide opportunities
-                to learn new skills, practice mindfulness,
-                and connect with our welcoming community.
+                At Riverbend Yoga Studio, we offer workshops that
+                encourage relaxation, movement, mindfulness, and
+                connection. All experience levels are welcome!
             </p>
 
-            <p>
-                Whether you are new to yoga or have years
-                of experience, our workshops offer a
-                supportive and relaxing environment.
-                Modifications are available for different
-                abilities and comfort levels.
-            </p>
+            <img src="images/yoga-workshop.jpg"
+                 alt="Participants enjoying a yoga workshop together">
+
+            <div id="workshop-list">
+                <article>
+                    <h3>Beginner Yoga Workshop</h3>
+                    <p>
+                        Learn basic yoga poses, breathing techniques,
+                        and ways to build confidence in your practice.
+                    </p>
+                    <p><strong>Date:</strong> First Saturday of each month</p>
+                    <p><strong>Time:</strong> 10:00 AM - 11:30 AM</p>
+                </article>
+
+                <article>
+                    <h3>Mindfulness and Meditation</h3>
+                    <p>
+                        Practice relaxation, guided meditation, and
+                        mindful breathing to help manage everyday stress.
+                    </p>
+                    <p><strong>Date:</strong> Second Saturday of each month</p>
+                    <p><strong>Time:</strong> 10:00 AM - 11:30 AM</p>
+                </article>
+
+                <article>
+                    <h3>Restorative Yoga Workshop</h3>
+                    <p>
+                        Enjoy gentle stretching, supported poses, and
+                        peaceful relaxation in a welcoming environment.
+                    </p>
+                    <p><strong>Date:</strong> Third Saturday of each month</p>
+                    <p><strong>Time:</strong> 10:00 AM - 11:30 AM</p>
+                </article>
+            </div>
         </section>
 
         <section>
-            <h2>Monthly Workshop Offerings</h2>
+            <h2>Find Your Workshop</h2>
             <p>
-                Explore our sample monthly offerings below.
-                Contact the studio for upcoming dates,
-                availability, and registration information.
+                Select a workshop below to learn more about it.
+                Your preference will be remembered when you return
+                to this page.
             </p>
 
-            <h3>Beginner Yoga Foundations</h3>
-            <p>
-                Learn basic yoga poses, breathing techniques,
-                and safe movement practices. This workshop
-                is ideal for beginners who want to feel
-                confident starting their yoga journey.
-            </p>
+            <label for="workshop-choice">Choose a workshop:</label>
+            <select id="workshop-choice">
+                <option value="">-- Select a Workshop --</option>
+                <option value="beginner">Beginner Yoga Workshop</option>
+                <option value="mindfulness">Mindfulness and Meditation</option>
+                <option value="restorative">Restorative Yoga Workshop</option>
+            </select>
 
-            <h3>Mindful Breathing and Relaxation</h3>
-            <p>
-                Discover simple breathing exercises and
-                relaxation techniques designed to reduce
-                everyday stress and encourage mindfulness.
-                All experience levels are welcome.
-            </p>
-
-            <h3>Gentle Stretching and Restorative Yoga</h3>
-            <p>
-                Enjoy a slower-paced workshop focused on
-                flexibility, supported poses, and relaxation.
-                This workshop is especially welcoming to
-                older adults and anyone seeking gentle movement.
-            </p>
-        </section>
-
-        <section>
-            <h2>Featured Workshop</h2>
-            <h3>Relax, Restore, and Recharge</h3>
-
-            <figure>
-                <img src="yoga-workshop_c.png"
-                     alt="Yoga participants practicing together during a supportive group workshop"
-                     width="800">
-
-                <figcaption>
-                    Our restorative yoga workshops encourage
-                    relaxation, mindful movement, and connection.
-                </figcaption>
-            </figure>
-
-            <p>
-                Take time for yourself with guided breathing,
-                gentle stretching, and restorative yoga.
-                This welcoming workshop is designed to help
-                participants unwind and restore balance.
-            </p>
-
-            <p>
-                No previous yoga experience is required.
-                Please use the form below to request
-                information about participating.
-            </p>
+            <p id="workshop-result" aria-live="polite"></p>
         </section>
 
         <section>
             <h2>Request a Spot</h2>
-
             <p>
-                Interested in joining a class or workshop?
-                Complete the interest form below to tell
-                us more about yourself and your preferences.
+                Interested in attending one of our workshops?
+                Complete the form below to let us know!
+                This is an interest request and does not
+                guarantee a reservation.
             </p>
 
-            <form id="interest-form">
-
-                <fieldset>
-                    <legend>Your Contact Information</legend>
-
-                    <label for="full-name">Full Name *</label>
+            <form id="interest-form" novalidate>
+                <div>
+                    <label for="visitor-name">Full Name:</label>
                     <input type="text"
-                           id="full-name"
-                           name="full-name"
+                           id="visitor-name"
+                           name="visitor-name"
                            autocomplete="name"
-                           required>
+                           aria-describedby="name-error">
+                    <p id="name-error" class="error-message"
+                       aria-live="polite"></p>
+                </div>
 
-                    <label for="email">Email Address *</label>
+                <div>
+                    <label for="visitor-email">Email Address:</label>
                     <input type="email"
-                           id="email"
-                           name="email"
+                           id="visitor-email"
+                           name="visitor-email"
                            autocomplete="email"
-                           required>
-                </fieldset>
+                           aria-describedby="email-error">
+                    <p id="email-error" class="error-message"
+                       aria-live="polite"></p>
+                </div>
 
-                <fieldset>
-                    <legend>Your Yoga Interests</legend>
-
-                    <label for="interest">
-                        Class or Event Interest *
-                    </label>
-
-                    <select id="interest"
-                            name="interest"
-                            required>
-                        <option value="">Please select</option>
-                        <option value="gentle">
-                            Gentle Yoga
-                        </option>
-                        <option value="vinyasa">
-                            Vinyasa Yoga
-                        </option>
-                        <option value="restorative">
-                            Restorative Yoga
-                        </option>
-                        <option value="private">
-                            Private Session
-                        </option>
-                        <option value="beginner-workshop">
-                            Beginner Yoga Foundations
-                        </option>
-                        <option value="breathing-workshop">
-                            Mindful Breathing and Relaxation
-                        </option>
-                        <option value="stretching-workshop">
-                            Gentle Stretching and Restorative Yoga
-                        </option>
-                        <option value="featured-workshop">
-                            Relax, Restore, and Recharge
-                        </option>
+                <div>
+                    <label for="form-workshop">Preferred Workshop:</label>
+                    <select id="form-workshop"
+                            name="form-workshop"
+                            aria-describedby="workshop-error">
+                        <option value="">-- Select a Workshop --</option>
+                        <option value="beginner">Beginner Yoga Workshop</option>
+                        <option value="mindfulness">Mindfulness and Meditation</option>
+                        <option value="restorative">Restorative Yoga Workshop</option>
                     </select>
+                    <p id="workshop-error" class="error-message"
+                       aria-live="polite"></p>
+                </div>
 
-                    <label for="experience">
-                        Experience Level *
+                <div>
+                    <label for="visitor-message">
+                        Questions or Accommodation Requests (Optional):
                     </label>
+                    <textarea id="visitor-message"
+                              name="visitor-message"
+                              rows="4"></textarea>
+                </div>
 
-                    <select id="experience"
-                            name="experience"
-                            required>
-                        <option value="">Please select</option>
-                        <option value="beginner">
-                            Beginner
-                        </option>
-                        <option value="some-experience">
-                            Some Experience
-                        </option>
-                        <option value="experienced">
-                            Experienced
-                        </option>
-                    </select>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Communication Preferences</legend>
-
-                    <label for="contact-method">
-                        Preferred Contact Method *
-                    </label>
-
-                    <select id="contact-method"
-                            name="contact-method"
-                            required>
-                        <option value="">Please select</option>
-                        <option value="email">Email</option>
-                        <option value="phone">Phone</option>
-                    </select>
-
-                    <label for="phone">
-                        Phone Number (if phone contact preferred)
-                    </label>
-                    <input type="tel"
-                           id="phone"
-                           name="phone"
-                           autocomplete="tel">
-
-                    <label for="message">
-                        Questions or Additional Information
-                    </label>
-
-                    <textarea id="message"
-                              name="message"
-                              rows="5"
-                              placeholder="Tell us about your interests, questions, or accommodation needs."></textarea>
-                </fieldset>
-
-                <button type="submit">
-                    Request a Spot
-                </button>
-
-                <p id="form-status" role="status" aria-live="polite"></p>
-
-                <p>
-                    <small>
-                        This is a demonstration interest form.
-                        It does not transmit or store personal
-                        information. A live submission service
-                        would be needed to receive requests.
-                    </small>
-                </p>
-
+                <button type="submit">Request a Spot</button>
             </form>
+
+            <p id="form-message" role="status" aria-live="polite"></p>
         </section>
-
-        <section>
-            <h2>Everyone Is Welcome</h2>
-            <p>
-                We believe yoga should be accessible to people
-                of all backgrounds, ages, and abilities.
-                Our instructors offer modifications and
-                encourage every participant to move at
-                their own comfortable pace.
-            </p>
-
-            <p>
-                Learn more about our
-                <a href="services.html">classes and services</a>
-                or visit our
-                <a href="about.html">About page</a>
-                for studio policies and accommodations.
-            </p>
-        </section>
-
     </main>
 
     <footer>
         <p>&copy; 2026 Riverbend Yoga Studio. All rights reserved.</p>
-        <p>Move gently. Breathe deeply. Feel welcome.</p>
+        <p>Everyone is welcome at Riverbend.</p>
     </footer>
 
-    <script>
-        const form = document.getElementById("interest-form");
-        const status = document.getElementById("form-status");
-        const contactMethod = document.getElementById("contact-method");
-        const phone = document.getElementById("phone");
-
-        contactMethod.addEventListener("change", function () {
-            phone.required = contactMethod.value === "phone";
-        });
-
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            status.textContent =
-                "Your form entries are valid. This is a demo, " +
-                "so your request has not been sent.";
-        });
-    </script>
-
+    <script src="script.js" defer></script>
 </body>
 </html>
