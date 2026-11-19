@@ -1,7 +1,7 @@
 
 "use strict";
 
-// Workshop information is organized using an array of objects.
+// Workshop information: one array containing three workshop objects.
 const workshops = [
     {
         id: "beginner",
@@ -20,173 +20,143 @@ const workshops = [
     }
 ];
 
-// Additional object for browser storage settings.
 const storageSettings = {
     key: "riverbendPreferredWorkshop"
 };
 
-// Get the page elements.
-const workshopChoice = document.getElementById("workshop-choice");
-const workshopResult = document.getElementById("workshop-result");
-const formWorkshop = document.getElementById("form-workshop");
-const interestForm = document.getElementById("interest-form");
-
-// Find a workshop using its ID.
+// Find a workshop by its ID.
 function findWorkshop(id) {
-    return workshops.find(function(workshop) {
-        return workshop.id === id;
-    });
+    return workshops.find(workshop => workshop.id === id);
 }
 
-// Display the selected workshop without reloading the page.
+// Display the selected workshop description.
 function displayWorkshop(id) {
-    const selected = findWorkshop(id);
+    const output = document.getElementById("workshop-result");
+    const workshop = findWorkshop(id);
 
-    if (selected) {
-        workshopResult.textContent =
-            "You selected: " + selected.name + ". " +
-            selected.description;
-    } else {
-        workshopResult.textContent = "";
-    }
+    output.textContent = workshop
+        ? `You selected: ${workshop.name}. ${workshop.description}`
+        : "";
 }
 
-// Save and display a visitor's preferred workshop.
+// Save the selected workshop.
 function selectWorkshop(id) {
-    displayWorkshop(id);
-    formWorkshop.value = findWorkshop(id) ? id : "";
+    const workshop = findWorkshop(id);
 
-    if (findWorkshop(id)) {
+    document.getElementById("form-workshop").value =
+        workshop ? id : "";
+
+    displayWorkshop(id);
+
+    if (workshop) {
         localStorage.setItem(storageSettings.key, id);
     } else {
         localStorage.removeItem(storageSettings.key);
     }
 }
 
-// Restore the visitor's selection after a page refresh.
+// Restore the saved workshop after refreshing.
 function loadSavedWorkshop() {
-    const savedId = localStorage.getItem(storageSettings.key);
+    const id = localStorage.getItem(storageSettings.key);
 
-    if (savedId && findWorkshop(savedId)) {
-        workshopChoice.value = savedId;
-        formWorkshop.value = savedId;
-        displayWorkshop(savedId);
+    if (findWorkshop(id)) {
+        document.getElementById("workshop-choice").value = id;
+        selectWorkshop(id);
     }
 }
 
-// Display an error next to a form field.
-function showError(fieldId, errorId, message) {
+// Show or clear validation errors.
+function setError(fieldId, errorId, message) {
     const field = document.getElementById(fieldId);
     const error = document.getElementById(errorId);
 
-    field.setAttribute("aria-invalid", "true");
     error.textContent = message;
+
+    if (message) {
+        field.setAttribute("aria-invalid", "true");
+    } else {
+        field.removeAttribute("aria-invalid");
+    }
 }
 
-// Remove a previously displayed error.
-
-function clearError(fieldId, errorId) {
-    const field = document.getElementById(fieldId);
-    const error = document.getElementById(errorId);
-
-    field.removeAttribute("aria-invalid");
-    error.textContent = "";
-}
-
-// Validate the interest request form.
+// Validate the Request a Spot form.
 function validateForm() {
-    let valid = true;
-
     const name = document.getElementById("visitor-name").value.trim();
     const email = document.getElementById("visitor-email").value.trim();
-    const selectedWorkshop = formWorkshop.value;
+    const workshopId = document.getElementById("form-workshop").value;
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    clearError("visitor-name", "name-error");
-    clearError("visitor-email", "email-error");
-    clearError("form-workshop", "workshop-error");
-    let valid = true;
+    const nameError = name.length < 2
+        ? "Please enter your full name (at least 2 characters)."
+        : "";
 
-    const name = document.getElementById("visitor-name").value.trim();
-    const email = document.getElementById("visitor-email").value.trim();
-    const selectedWorkshop = formWorkshop.value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;/;
+    const emailError = !emailPattern.test(email)
+        ? "Please enter a valid email address."
+        : "";
 
-    clearError("visitor-name", "name-error");
-    clearError("visitor-email", "email-error");
-    clearError("form-workshop", "workshop-error");
+    const workshopError = !findWorkshop(workshopId)
+        ? "Please select a workshop."
+        : "";
 
-    if (name.length < 2) {
-        showError(
-            "visitor-name",
-            "name-error",
-            "Please enter your full name (at least 2 characters)."
-        );
-        valid = false;
-    }
+    setError("visitor-name", "name-error", nameError);
+    setError("visitor-email", "email-error", emailError);
+    setError("form-workshop", "workshop-error", workshopError);
 
-    if (!emailPattern.test(email)) {
-        showError(
-            "visitor-email",
-            "email-error",
-            "Please enter a valid email address."
-        );
-        valid = false;
-    }
-
-    if (!findWorkshop(selectedWorkshop)) {
-        showError(
-            "form-workshop",
-            "workshop-error",
-            "Please select a workshop."
-        );
-        valid = false;
-    }
-
-    return valid;
+    return !nameError && !emailError && !workshopError;
 }
 
-// Listen for workshop selection changes.
-workshopChoice.addEventListener("change", function() {
-    selectWorkshop(workshopChoice.value);
-});
+// Connect JavaScript to the webpage.
+function setupPage() {
+    const workshopChoice = document.getElementById("workshop-choice");
+    const formWorkshop = document.getElementById("form-workshop");
+    const form = document.getElementById("interest-form");
 
-// Keep the selector and form in sync.
-formWorkshop.addEventListener("change", function() {
-    workshopChoice.value = formWorkshop.value;
-    selectWorkshop(formWorkshop.value);
-    clearError("form-workshop", "workshop-error");
-});
-
-// Clear errors as users correct their information.
-document.getElementById("visitor-name").addEventListener(
-    "input",
-    function() {
-        clearError("visitor-name", "name-error");
+    if (!workshopChoice || !formWorkshop || !form) {
+        return;
     }
-);
 
-document.getElementById("visitor-email").addEventListener(
-    "input",
-    function() {
-        clearError("visitor-email", "email-error");
-    }
-);
+    // Update the page when a workshop is selected.
+    workshopChoice.addEventListener("change", () => {
+        selectWorkshop(workshopChoice.value);
+    });
 
-// Prevent invalid submissions.
-interestForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+    // Keep the form selection synchronized.
+    formWorkshop.addEventListener("change", () => {
+        workshopChoice.value = formWorkshop.value;
+        selectWorkshop(formWorkshop.value);
+        setError("form-workshop", "workshop-error", "");
+    });
 
-    const formMessage = document.getElementById("form-message");
-    formMessage.textContent = "";
+    // Clear errors when the user edits a field.
+    document.getElementById("visitor-name").addEventListener(
+        "input",
+        () => setError("visitor-name", "name-error", "")
+    );
 
-    if (validateForm()) {
-        formMessage.textContent =
-            "Your request details are valid! " +
-            "This is a demonstration form; " +
-            "no information has been sent to the studio.";
-    }
-});
+    document.getElementById("visitor-email").addEventListener(
+        "input",
+        () => setError("visitor-email", "email-error", "")
+    );
 
-// Load saved preferences when the page opens.
-loadSavedWorkshop();
+    // Validate the form before allowing a successful result.
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const message = document.getElementById("form-message");
+
+        message.textContent = validateForm()
+            ? "Your request details are valid! This is a demonstration form; no information has been sent to the studio."
+            : "Please correct the highlighted fields and try again.";
+    });
+
+    // Load saved workshop preferences.
+    loadSavedWorkshop();
+}
+
+// Start JavaScript after the webpage loads.
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupPage);
+} else {
+    setupPage();
+}
