@@ -207,3 +207,43 @@ footer {
     }
 
 }
+/* Touchstone 4 workshop and form styling */
+
+#workshop-list article {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #d5dfd8;
+    border-radius: 8px;
+}
+
+#workshop-choice,
+#interest-form input,
+#interest-form select,
+#interest-form textarea {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+#interest-form div {
+    margin-bottom: 16px;
+}
+
+.error-message {
+    color: #a11c27;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#workshop-result,
+#form-message {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#interest-form [aria-invalid="true"] {
+    border: 2px solid #a11c27;
+}
