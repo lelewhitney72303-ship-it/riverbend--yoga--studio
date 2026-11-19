@@ -90,7 +90,7 @@ function clearError(fieldId, errorId) {
 
     field.removeAttribute("aria-invalid");
     error.textContent = "";
-}
+}const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Validate the interest request form.
 function validateForm() {
